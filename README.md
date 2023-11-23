@@ -1,2 +1,1 @@
-# Interactive-map-D
-School project for an interactive map
+<h1>Interactive map</h1>
