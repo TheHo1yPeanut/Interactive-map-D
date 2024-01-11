@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>syd-for-solen-map</title>
 
+        <!-- Link to leaflet css resources -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
 
+        <!-- Link to leaflet js resources -->
         <link rel="stylesheet" href="index.css">
 
         
@@ -17,7 +19,10 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
 
+    <!-- Link to leaflet geo-location css resources -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+
+    <!-- Link to leafltet geo-location js resources -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
 
@@ -25,116 +30,151 @@
 </head>
 <body>
 
+    <!-- Map div -->
     <div id="mapContainer">
         <div id="map1">
     </div>
 
+    <!-- Button div -->
     <div id="buttonContainer">
         <button id="returnButton">Tilbage til festen!</button>
     </div>
 
+    <!-- Infor-bar div -->
     <div id="infoBar">
 
+        <!-- 1st info-bar div section -->
         <div id="innerDiv1" class="innerInfoDiv">
+            <!-- Div for icon dimension management -->
             <div class="iconHolder">
+                <!-- Div for proper padding management -->
                 <div class="iconSpacer"></div>
+                <!-- Div for image management -->
                 <div id="innerDiv1imgDiv">
                     <img src="img/icons/toilet-icon.png" id="innerDiv1img">
                 </div>
+                <!-- Spacer between text and image -->
                 <div class="iconSpacer"></div>
             </div>
 
+            <!-- It's in the name -->
             <span class="textHolder">Toilets</span>
 
         </div>
 
+        <!-- 2nd info-bar div section -->
         <div id="innerDiv2" class="innerInfoDiv">
 
+            <!-- Spacer for padding management -->
             <div class="spacer"></div>
 
+            <!-- First textbox and icon holder -->
             <div class="innerDiv2sub">
+            <!-- Spacer that is small :) -->
                 <div class="subSpacer"></div>
+            <!-- Red circle icon -->
                 <div id="redCircle"></div>
+            <!-- Text box -->
                 <span class="innerDiv2span">Main Scene</span>
             </div>
 
+            <!-- Spacer for padding management -->
             <div class="spacer"></div>
 
+            <!-- Second textbox and icon holder -->
             <div class="innerDiv2sub">
+            <!-- Spacer that is small :) -->
                 <div class="subSpacer"></div>
+            <!-- Yellow circle icon -->
                 <div id="yellowCircle"></div>
+            <!-- Text box -->
                 <span class="innerDiv2span">Food Stand</span>
             </div>
 
+            <!-- Spacer for padding management -->
             <div class="spacer"></div>
 
         </div>
 
+        <!-- 3rd info-bar div section -->        
         <div id="innerDiv3" class="innerInfoDiv">
+            <!-- Div for icon dimension management -->
             <div class="iconHolder">
+                <!-- Div for proper padding management -->
                 <div class="iconSpacer"></div>
+                <!-- Div for image management -->
                 <div id="innerDiv3imgDiv">
                     <img src="img/icons/trash-icon.png" id="innerDiv3img">
                 </div>
+                <!-- Spacer between text and image -->                
                 <div class="iconSpacer"></div>
             </div>
 
+            <!-- Yeah, you get it -->
             <span class="textHolder">Trashcans</span>
 
         </div>
     </div>
     
     <script>
-        var map;
-        map = L.map('map1').setView([55.638927, 12.520324], 15);
+        var map; // map var
+        map = L.map('map1').setView([55.638927, 12.520324], 15); // map creation with origin cords
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 25,
 	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(map); // setting map style
 
-    L.control.locate().addTo(map);
+    L.control.locate().addTo(map); // geo-location call
 
     var mainFestival = [[55.640059, 12.522852],[55.640646, 12.525143],[55.637717, 12.525989],[55.637753, 12.523181]];
+    // festival area polygon cords
 
     var festivalScene = [[55.638960, 12.525500],[55.639785, 12.525350],[55.639785, 12.524900],[55.638869, 12.524974]];
+    // scene polygon cords
 
     var foodStand = [[55.639336, 12.523499],[55.639365, 12.522960],[55.638908, 12.522992],[55.638954, 12.523567]];
+    // food stand cords
 
     L.polygon(mainFestival, {color: "grey"}).addTo(map); // main festival polygon
+    // festival area creation with use of cords, also color styling
 
     L.polygon(festivalScene, {color: "red"}).addTo(map).bindPopup("<h2>Scene 1</h2>"); // festival scene polygon
+    // scene creation with use of cords, also color styling
 
     L.polygon(foodStand, {color: "purple"}).addTo(map).bindPopup("<h2>Food stand</h2>"); // food stand
+    // food stand creation with use of cords, also color styling
 
-    var resetButton = document.getElementById("returnButton");
-    
+    var resetButton = document.getElementById("returnButton"); // button var
+
     function resetMap(){
         map.flyTo([55.638927, 12.520324], 15);  
-    }
+    } // function to returnn to origin cords 
 
-    resetButton.addEventListener("click", resetMap);
+    resetButton.addEventListener("click", resetMap); // adding funciton call on button press using resetMap() and the button var 
 
     var toiletIcon = L.icon({
         iconUrl: "img/icons/toilet-icon.png",
         iconSize: [15]
-    });
+    }); // creation of toilet icon var and styling
     
     var trashIcon = L.icon({
         iconUrl: "img/icons/trash-icon.png",
         iconSize: [15]
-    })
+    }); // creation of trash icon var and styling
 
     // toilets
     L.marker([55.640338, 12.525407], {icon: toiletIcon}).addTo(map).bindPopup("<h2>Toilet</h2>");
     L.marker([55.638357, 12.526209], {icon: toiletIcon}).addTo(map).bindPopup("<h2>Toilet</h2>");
     // toilets
+    // creating marker instances with the toilet icon var settings
 
     // trashcans
     L.marker([55.638416, 12.525768], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
     L.marker([55.639063, 12.524566], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
     L.marker([55.640305, 12.525464], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
     // trashcans
+    // creating marker instances with the trash icon var settings
 
 
 
