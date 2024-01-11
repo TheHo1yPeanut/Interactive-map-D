@@ -1,0 +1,161 @@
+@font-face {
+    font-family: family;
+    src: url(font/Caprasimo-Regular.ttf);
+}
+
+#map1{
+    height: 100%;
+    width: 100%;
+
+    border: 6px rgb(190, 190, 190) solid;
+    border-radius: 4px;
+}
+
+#mapContainer{
+    height: 400px;
+    width: 80%;  
+    margin: auto;
+}
+
+#returnButton{
+    width: 100%;
+    height: 100%; 
+    background-color: rgb(26, 69, 208);
+    border: 3px solid rgb(203, 254, 49);
+    border-radius: 15%;
+
+    color: rgb(203, 254, 49);
+    font-family: family;
+}
+
+#buttonContainer{
+    width: 28%;
+    height: 18%; 
+    
+    margin: auto;
+    margin-top: 20px;
+}
+
+#infoBar{
+    width: 80%;
+    height: 40%; 
+    
+    margin: auto;
+    margin-top: 20px;
+
+    background-color: rgb(227, 227, 228);
+    border: solid rgb(190, 190, 190) 6px;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#innerDiv1{
+    flex-direction: column;
+}
+
+#innerDiv1imgDiv{
+    aspect-ratio : 1 / 1;
+    width: 40%;
+}
+
+#innerDiv3imgDiv{
+    aspect-ratio : 1 / 1;
+    width: 40%;
+}
+
+#innerDiv3img{
+    display: block;
+    margin: auto;
+    margin-top: 30%;
+}
+
+#innerDiv1img{
+    display: block;
+    margin: auto;
+    margin-top: 30%;
+}
+
+#innerDiv2{
+    border-left: 2px rgb(190, 190, 190) solid;
+    border-right: 2px rgb(190, 190, 190) solid;
+
+    height: 80%;
+
+    flex-direction: column;
+}
+
+#redCircle{
+    height: 25px;
+    width: 25px;
+
+    border-radius: 50%;
+    background-color: red;  
+}
+
+#yellowCircle{
+    height: 25px;
+    width: 25px;
+
+    border-radius: 50%;
+    background-color: purple;  
+}
+
+#innerDiv3{
+    flex-direction: column;
+}
+
+.innerInfoDiv{
+    width: 33.333333%;
+    height: 100%;
+
+    display: flex;
+}
+
+.innerDiv2sub{
+    height: 25px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.innerDiv2span{
+    text-align: center;
+    width: 100%;
+    font-family: family;
+}
+
+.spacer{
+    flex-grow: 1;
+}
+
+.subSpacer{
+    width: 10%;
+    height: 100%;
+}
+
+.iconHolder{
+    display: flex;
+    flex-direction: row;
+
+    flex-grow: 1;
+}
+
+.iconSpacer{
+    flex-grow: 1;
+}
+
+.textHolder{
+    flex-grow: 4;
+    text-align: center;
+    font-family: family;
+    padding-top: 5%;
+}
+
+body{
+    background-image: url(img/logo.png);
+    background-size: cover;
+}
+

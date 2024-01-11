@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syd-for-solen-map</title>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+        <link rel="stylesheet" href="index.css">
+
+        
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+
+
+</head>
+<body>
+
+    <div id="mapContainer">
+        <div id="map1">
+    </div>
+
+    <div id="buttonContainer">
+        <button id="returnButton">Tilbage til festen!</button>
+    </div>
+
+    <div id="infoBar">
+
+        <div id="innerDiv1" class="innerInfoDiv">
+            <div class="iconHolder">
+                <div class="iconSpacer"></div>
+                <div id="innerDiv1imgDiv">
+                    <img src="img/icons/toilet-icon.png" id="innerDiv1img">
+                </div>
+                <div class="iconSpacer"></div>
+            </div>
+
+            <span class="textHolder">Toilets</span>
+
+        </div>
+
+        <div id="innerDiv2" class="innerInfoDiv">
+
+            <div class="spacer"></div>
+
+            <div class="innerDiv2sub">
+                <div class="subSpacer"></div>
+                <div id="redCircle"></div>
+                <span class="innerDiv2span">Main Scene</span>
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="innerDiv2sub">
+                <div class="subSpacer"></div>
+                <div id="yellowCircle"></div>
+                <span class="innerDiv2span">Food Stand</span>
+            </div>
+
+            <div class="spacer"></div>
+
+        </div>
+
+        <div id="innerDiv3" class="innerInfoDiv">
+            <div class="iconHolder">
+                <div class="iconSpacer"></div>
+                <div id="innerDiv3imgDiv">
+                    <img src="img/icons/trash-icon.png" id="innerDiv3img">
+                </div>
+                <div class="iconSpacer"></div>
+            </div>
+
+            <span class="textHolder">Trashcans</span>
+
+        </div>
+    </div>
+    
+    <script>
+        var map;
+        map = L.map('map1').setView([55.638927, 12.520324], 15);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 25,
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.control.locate().addTo(map);
+
+    var mainFestival = [[55.640059, 12.522852],[55.640646, 12.525143],[55.637717, 12.525989],[55.637753, 12.523181]];
+
+    var festivalScene = [[55.638960, 12.525500],[55.639785, 12.525350],[55.639785, 12.524900],[55.638869, 12.524974]];
+
+    var foodStand = [[55.639336, 12.523499],[55.639365, 12.522960],[55.638908, 12.522992],[55.638954, 12.523567]];
+
+    L.polygon(mainFestival, {color: "grey"}).addTo(map); // main festival polygon
+
+    L.polygon(festivalScene, {color: "red"}).addTo(map).bindPopup("<h2>Scene 1</h2>"); // festival scene polygon
+
+    L.polygon(foodStand, {color: "purple"}).addTo(map).bindPopup("<h2>Food stand</h2>"); // food stand
+
+    var resetButton = document.getElementById("returnButton");
+    
+    function resetMap(){
+        map.flyTo([55.638927, 12.520324], 15);  
+    }
+
+    resetButton.addEventListener("click", resetMap);
+
+    var toiletIcon = L.icon({
+        iconUrl: "img/icons/toilet-icon.png",
+        iconSize: [15]
+    });
+    
+    var trashIcon = L.icon({
+        iconUrl: "img/icons/trash-icon.png",
+        iconSize: [15]
+    })
+
+    // toilets
+    L.marker([55.640338, 12.525407], {icon: toiletIcon}).addTo(map).bindPopup("<h2>Toilet</h2>");
+    L.marker([55.638357, 12.526209], {icon: toiletIcon}).addTo(map).bindPopup("<h2>Toilet</h2>");
+    // toilets
+
+    // trashcans
+    L.marker([55.638416, 12.525768], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
+    L.marker([55.639063, 12.524566], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
+    L.marker([55.640305, 12.525464], {icon: trashIcon}).addTo(map).bindPopup("<h2>Trashcan</h2>");
+    // trashcans
+
+
+
+    
+    </script>
+
+
+
+</body>
+</html>
